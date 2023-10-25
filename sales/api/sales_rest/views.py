@@ -88,7 +88,30 @@ def sales(request):
             encoder=SalesEncoder,
             safe=False
         )
-
+@require_http_methods(["GET", "PUT", "DELETE"])
+def edit_sales(request,id):
+    if request.method == "GET":
+        sales = Sale.objects.all()
+        return JsonResponse(
+            {"sales": sales},
+            encoder=SalesEncoder,
+        )
+    else:
+        content = json.loads(request.body)
+        print("content", content)
+        automobile = AutomobileVO.objects.get(id=content['automobile'])
+        content['automobile'] = automobile
+        customer = Customer.objects.get(id=content['customer'])
+        content['customer'] = customer
+        salesperson = Salesperson.objects.get(id=content['salesperson'])
+        content['salesperson'] = salesperson
+        print("content", content)
+        sale = Sale.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SalesEncoder,
+            safe=False
+        )
 
 @require_http_methods(["GET", "POST"])
 def salespeople(request):
@@ -152,12 +175,12 @@ def customers(request):
     else:
         content = json.loads(request.body)
         print("content", content)
-        customer = Customer.objects.create(**content)
-        return JsonResponse(
-            customer,
-            encoder=CustomerDetailEncoder,
-            safe=False
-        )
+    customer = Customer.objects.create(**content)
+    return JsonResponse(
+        customer,
+        encoder=CustomerDetailEncoder,
+        safe=False
+    )
 
 
 def list_autovo(request):
