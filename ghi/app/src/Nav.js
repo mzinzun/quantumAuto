@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 function Nav() {
   return (
@@ -9,8 +11,85 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          </ul>
+        <DropdownButton id="dropdown-basic-button" title="Services">
+      
+      <Dropdown.Item> 
+        <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/technicians"
+              >
+                Technicians List
+        </NavLink>
+        </Dropdown.Item> 
+        <Dropdown.Item> 
+        <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/technicians/new"
+              >
+                Create Technician
+        </NavLink>
+        </Dropdown.Item> 
+        <Dropdown.Item>
+        <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/appointments"
+              >
+                Appointments
+              </NavLink>
+        </Dropdown.Item>
+        <Dropdown.Item>
+        <NavLink
+                className="nav-link active"
+                aria-current="page"
+                to="/appointments/new"
+              >
+                Create Appointment
+              </NavLink>
+        </Dropdown.Item>
+        <Dropdown.Item>
+        <NavLink
+                className="nav-link "
+                aria-current="page"
+                to="/appointments/all"
+              >
+                Appointment History
+              </NavLink>
+        </Dropdown.Item>
+        </DropdownButton>
+        <DropdownButton id="dropdown-basic-button ml-5" title="Inventory">
+        <Dropdown.Item>
+          <NavLink
+                className="nav-link "
+                aria-current="page"
+                to="/manufacturers/new"
+              >
+                Create Manufacturer
+              </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+          <NavLink
+                className="nav-link "
+                aria-current="page"
+                to="/manufacturers"
+              >
+                Manufacturer List
+              </NavLink>
+          </Dropdown.Item>
+          <Dropdown.Item>
+          <NavLink
+                className="nav-link "
+                aria-current="page"
+                to="/models"
+              >
+               Models List
+              </NavLink>
+          </Dropdown.Item>
+         
+        </DropdownButton>
+      
         </div>
       </div>
     </nav>
