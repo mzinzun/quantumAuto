@@ -23,7 +23,7 @@ return (
         
     <div className="row ">
          <div className="mt-2 mb-2">
-            <Link to="/models" className="btn btn-info btn-md ">
+            <Link to="/models/new" className="btn btn-info btn-md ">
             Add A Models
             </Link>
         </div>

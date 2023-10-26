@@ -9,6 +9,7 @@ import AppointmentHistory from './serviceComponents/AppointmentHistory';
 import ManufacturerForm from './inventoryComponents/ManufacturerForm';
 import ManufacturerList from './inventoryComponents/ManufacturerList';
 import ModelList from './inventoryComponents/ModelList';
+import ModelForm from './inventoryComponents/ModelForm';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
             </Route>
             <Route path="/models">
             <Route index element={<ModelList />} />
-            {/* <Route path="new" element={<ManufacturerForm />} /> */}
+            <Route path="new" element={<ModelForm />} />
             </Route>
         </Routes>
       </div>

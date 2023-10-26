@@ -40,6 +40,9 @@ function Nav() {
           <Dropdown.Item as={NavLink} to="/models" className="nav-link " aria-current="page">
                 Model List
           </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/models/new" className="nav-link " aria-current="page">
+                Model Form
+          </Dropdown.Item>
         </DropdownButton>
       
         </div>
