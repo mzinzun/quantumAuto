@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AppointmentForm() {
-  // Here is the old way of creating state hooks for every
-  // property. Can you refactor this to make it into a single
-  // data object like the ConferenceForm() above?
 
   const [dateTime, setDateTime] = useState("");
   const [reason, setReason] = useState("");
@@ -11,8 +9,8 @@ function AppointmentForm() {
   const [customer, setCustomer] = useState("");
   const [technicians, setTechnicians] = useState([]);
   const [technician, setTechnician] = useState("");
-  
-  
+  const navigate = useNavigate()
+
   const handleDateTimeChange = (event) => {
     const value = event.target.value;
     setDateTime(value);
@@ -47,7 +45,6 @@ function AppointmentForm() {
     customer: customer,
     technician: technician,
 
-    
  }
     const appointmentUrl = `http://localhost:8080/api/appointments/`;
     const fetchConfig = {
@@ -62,11 +59,14 @@ function AppointmentForm() {
       const newAppointment = await response.json();
       // console.log(newAppointment);
 
-        setDateTime("");
-        setReason("");
-        setCustomer("");
-        setVin("");
-        setTechnician("");
+        // setDateTime("");
+        // setReason("");
+        // setCustomer("");
+        // setVin("");
+        // setTechnician("");
+        navigate("/appointments")
+
+        // look into form validation errors
     }
   };
 

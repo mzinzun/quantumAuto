@@ -11,9 +11,9 @@ function Nav() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
         <DropdownButton id="dropdown-basic-button" title="Services">
-      
-      <Dropdown.Item as={NavLink} to="/technicians" className="nav-link " aria-current="page"> 
+        <Dropdown.Item as={NavLink} to="/technicians" className="nav-link " aria-current="page"> 
                 Technicians List
         </Dropdown.Item> 
         <Dropdown.Item as={NavLink} to="/technicians/new" className="nav-link " aria-current="page"> 
@@ -29,10 +29,10 @@ function Nav() {
                 Appointment History
         </Dropdown.Item>
         </DropdownButton>
+
         <DropdownButton id="dropdown-basic-button ml-5" title="Inventory">
           <Dropdown.Item as={NavLink} to="/manufacturers/new" className="nav-link " aria-current="page">
                 Create Manufacturer
-              
           </Dropdown.Item>
           <Dropdown.Item as={NavLink} to="/manufacturers" className="nav-link " aria-current="page">
                 Manufacturer List
@@ -40,7 +40,6 @@ function Nav() {
           <Dropdown.Item as={NavLink} to="/models" className="nav-link " aria-current="page">
                 Model List
           </Dropdown.Item>
-         
         </DropdownButton>
       
         </div>

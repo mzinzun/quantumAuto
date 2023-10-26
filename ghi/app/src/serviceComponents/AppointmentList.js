@@ -89,11 +89,11 @@ return (
 
         <h1 className="mb-5 mt-3">Appointment Tickets</h1>
     
-        {apptList.map((appt,i) =>
+        {apptList.map((appt, i) =>
                     {
                         if (appt.status === "created")
-                        { i = 0
-                            return (
+                        { 
+                            return ( 
                               <div className="col-lg-4 col-md-6 mb-4" key={appt.id}>
                               <div className= {appt.vip ? "card border-4 border-warning":"card"}>
                                 <div className="card-body ">

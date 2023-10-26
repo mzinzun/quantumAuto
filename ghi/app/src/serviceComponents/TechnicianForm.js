@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TechnicianForm() {
   // Here is the old way of creating state hooks for every
@@ -8,6 +9,7 @@ function TechnicianForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
+  const navigate = useNavigate()
   
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
@@ -45,11 +47,11 @@ function TechnicianForm() {
     if (response.ok) {
       const newTechnician = await response.json();
       console.log(newTechnician);
-      
+      navigate("/technicians")
 
-        setFirstName("");
-        setLastName("");
-        setEmployeeId("");
+        // setFirstName("");
+        // setLastName("");
+        // setEmployeeId("");
       
     }
   };
