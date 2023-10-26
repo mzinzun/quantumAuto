@@ -17,29 +17,29 @@ function SalesForm({autos, customers, salespeople}){
     };
     async function handleSubmit(e){
         e.preventDefault();
+        // change value of sold to true
         console.log("formData.automobile.id: ", formData.automobile);
-        const autoURL='http://localhost:8100/api/automobiles/';
-        fetch(autoURL)
-        .then (result=>result.json())
-        .then(result=>result.autos)
-        // .then(data=>console.log('autos: ', data[0].id,formData.automobile))
-        .then(data => data.filter(auto=>auto.id == formData.automobile))
-        .then(result=>{
-            console.log(result[0].vin)
-            let autoVin = result[0].vin;
-            const vinURL=`http://localhost:8100/api/automobiles/${autoVin}/`;
-            const vb = {"sold": true}
-            const vinConfig = {
-                method: 'put',
-                body: JSON.stringify(vb),
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            }
-            const response = fetch(vinURL,vinConfig)
-        });
+        const vin = formData.automobile
+        // const autoURL=`http://localhost:8100/api/automobiles/${vin}`;
+        const putURL=`http://localhost:8100/api/automobiles/${vin}/`;
+        // const result = await fetch(autoURL);
+        // const autoData = await  result.json()
+        // console.log("myCar sold: ", autoData.sold);
+        // autoData.sold = true;
+        // console.log("myCar sold: ", autoData);
+        const jsonString = JSON.stringify({sold:true});
+        const autoConfig = {
+            method: 'put',
+            body: jsonString,
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        }
+        const putResponse = await fetch(putURL,autoConfig)
+        const returned = await putResponse.json()
+        console.log("returned auto: ", returned)
 
-        // const soldURL = 'http://localhost:8100/api/automobiles/1D3CC5LR2AN120274/'
+        // create sale
         const fetchURL='http://localhost:8090/api/sales/';
         const data = {...formData}
         const fetchConfig = {
@@ -58,6 +58,7 @@ function SalesForm({autos, customers, salespeople}){
     };
     return(
          <Form className="w-50" onSubmit={handleSubmit}>
+            {}
             <Form.Group>
                 <Form.Label>Vehicle</Form.Label>
                 <FormControl as="select"
@@ -66,7 +67,7 @@ function SalesForm({autos, customers, salespeople}){
                     onChange={handleChange}
                     value={formData.automobile}>
                         <option value="">Select Vehicle</option>
-                        {autos.map((auto,idx)=><option key={idx} value={auto.id}>{auto.color}</option>)}
+                        {autos.map((auto,idx)=><option key={idx} value={auto.vin}>{auto.vin}</option>)}
 
                 </FormControl>
             </Form.Group>
@@ -103,7 +104,7 @@ function SalesForm({autos, customers, salespeople}){
                 />
             </Form.Group>
             <Button variant="primary" type="submit">
-                Submit
+                Create
             </Button>
         </Form>
     )

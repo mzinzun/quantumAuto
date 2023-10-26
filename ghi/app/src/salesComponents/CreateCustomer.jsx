@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Form, Button } from 'react-bootstrap';
 
 function CreateCustomer(props) {
-const navigate = useNavigate();
+    const navigate = useNavigate();
     const emptyFields = {
         first_name: '',
         last_name: '',

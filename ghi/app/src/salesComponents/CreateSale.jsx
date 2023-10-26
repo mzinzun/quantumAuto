@@ -11,14 +11,13 @@ function CreateSale(props) {
     const [customers, setCustomers] = useState([]);
     async function getData(){
         const autoURL='http://localhost:8100/api/automobiles/';
-
         const sellersURL = 'http://localhost:8090/api/salespeople/';
         const customerURL = 'http://localhost:8090/api/customers/';
         // fetch data for autos
         const autosData = await fetch(autoURL);
         const holdAutos = await autosData.json();
-        setAutos(holdAutos.autos)
-
+        const filteredAutos = (holdAutos.autos).filter(auto=>auto.sold === false);
+        setAutos(filteredAutos)
         // fetch data for Sales people
         const salesPeopleData = await fetch(sellersURL);
         const holdSalesPeople = await salesPeopleData.json();
@@ -36,7 +35,7 @@ function CreateSale(props) {
 
     return (
         <>
-            <h1>Create Sale</h1>
+            <h1>Record a new sale</h1>
             <SalesForm autos={autos} customers={customers} salespeople={salespeople}/>
         </>
     )

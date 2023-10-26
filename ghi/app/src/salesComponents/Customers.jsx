@@ -1,19 +1,29 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"
 import { Table } from 'react-bootstrap';
 
 function Customers(props){
     const [customers, setCustomers] = useState([]);
     const [update, setUpdate] = useState(false);
+    const navigate = useNavigate();
     async function getData(){
         const response = await fetch("http://localhost:8090/api/customers/")
-        const result = await response.json()
+        const result = await response.json();
         const data = result.customers;
         setCustomers(data)
         setUpdate(true);
     }
+    function deleteCustomer(e){
+      console.log('record to delete: ',e.target.id);
+      const cust_id = e.target.id;
+      const delURL = `http://localhost:8090/api/customers/${cust_id}`
+      const response = fetch(delURL);
+      console.log("response: ", response);
+      let set = !update;
+      setUpdate(set);
+    }
     useEffect(()=>{
         getData();
-
     },[update])
 
   return (
@@ -24,10 +34,10 @@ function Customers(props){
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Phone Number</th>
           <th>Address</th>
           <th>City/State</th>
           <th>Zip</th>
-          <th>Phone Number</th>
           <th>ID</th>
         </tr>
       </thead>
@@ -42,7 +52,9 @@ function Customers(props){
                 <td>{customer.zip}</td>
                 <td>{customer.phone_number}</td>
                 <td>{customer.id}</td>
-                <td><button className="btn btn-info" id={customer.id}>delete</button></td>
+                <td><button className="btn btn-info"
+                  id={customer.id}
+                  onClick = {deleteCustomer}>delete</button></td>
             </tr>
             )
         })}

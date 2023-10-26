@@ -53,6 +53,7 @@ class SalesEncoder(ModelEncoder):
        "salesperson",
        "customer",
        "price",
+       "id"
     ]
     encoders = {
         "automobile": AutomobileVOEncoder(),
@@ -74,7 +75,7 @@ def sales(request):
     else:
         content = json.loads(request.body)
         print("content", content)
-        automobile = AutomobileVO.objects.get(id=content['automobile'])
+        automobile = AutomobileVO.objects.get(vin=content['automobile'])
         content['automobile'] = automobile
         customer = Customer.objects.get(id=content['customer'])
         content['customer'] = customer

@@ -1,5 +1,5 @@
 from django.urls import path
-from sales_rest.views import (
+from sales.api.sales_rest.hold_views import (
     list_autovo,
     salespeople,
     customers,
