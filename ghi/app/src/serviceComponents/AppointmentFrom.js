@@ -67,8 +67,6 @@ function AppointmentForm() {
         setCustomer("");
         setVin("");
         setTechnician("");
-     
-      
     }
   };
 
