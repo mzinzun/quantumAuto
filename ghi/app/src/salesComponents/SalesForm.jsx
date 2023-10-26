@@ -17,7 +17,29 @@ function SalesForm({autos, customers, salespeople}){
     };
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(formData);
+        console.log("formData.automobile.id: ", formData.automobile);
+        const autoURL='http://localhost:8100/api/automobiles/';
+        fetch(autoURL)
+        .then (result=>result.json())
+        .then(result=>result.autos)
+        // .then(data=>console.log('autos: ', data[0].id,formData.automobile))
+        .then(data => data.filter(auto=>auto.id == formData.automobile))
+        .then(result=>{
+            console.log(result[0].vin)
+            let autoVin = result[0].vin;
+            const vinURL=`http://localhost:8100/api/automobiles/${autoVin}/`;
+            const vb = {"sold": true}
+            const vinConfig = {
+                method: 'put',
+                body: JSON.stringify(vb),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+            const response = fetch(vinURL,vinConfig)
+        });
+
+        // const soldURL = 'http://localhost:8100/api/automobiles/1D3CC5LR2AN120274/'
         const fetchURL='http://localhost:8090/api/sales/';
         const data = {...formData}
         const fetchConfig = {
