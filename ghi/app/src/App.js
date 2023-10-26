@@ -17,7 +17,6 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
-          
           <Route path="/technicians">
             <Route index element={<TechnicianList />} />
             <Route path="new" element={<TechnicianForm />} />

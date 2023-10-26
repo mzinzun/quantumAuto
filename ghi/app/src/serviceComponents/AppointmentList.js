@@ -17,8 +17,6 @@ function AppointmentList(){
         
     }
 
-
-
 const handleFinishStatus = async (appointmentId)=>{
   const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`
   const fetchConfig = {
@@ -31,7 +29,6 @@ const handleFinishStatus = async (appointmentId)=>{
     console.log(`Appointment ${appointmentId} is finished`)
 }}
 
-
 const handleCancelStatus = async (appointmentId)=>{
   const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`
   const fetchConfig = {
@@ -43,9 +40,6 @@ const handleCancelStatus = async (appointmentId)=>{
     setStateChanged(temp)
     console.log(`Appointment ${appointmentId} is cancelled`)
 }}
-  
-
-
 
 const formatDate = (dateTime) =>
 {
@@ -66,7 +60,6 @@ const formatTime = (dateTime) =>
     return new Date(dateTime).toLocaleString(undefined, options);
 };
 
-
 useEffect(()=>{
   loadAppts()
 },[stateChanged])
@@ -84,7 +77,6 @@ const deleteAppt = async (event) => {
     setApptList(newApptList);
   }
 };
-
 
 return (
         
@@ -116,7 +108,7 @@ return (
                                   <div className="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" className="btn btn-success " onClick={() => handleFinishStatus(appt.id)}>Finish</button>
                                         <button type="button" className="btn btn-danger" onClick={() => handleCancelStatus(appt.id)}>Cancel</button>
-                                        <button onClick={deleteAppt} className="btn btn-warning" value={appt.id}>Delete</button>
+                                        {/* <button onClick={deleteAppt} className="btn btn-warning" value={appt.id}>Delete</button> */}
                                   </div>
                                   
                   

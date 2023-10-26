@@ -1,23 +1,33 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function TechnicianList(){
-    const [techList, setTechList] = useState([])
+function TechnicianList() {
+  // state variable 'techList' to hold the list of technicians.
+  const [techList, setTechList] = useState([])
 
-    const loadTechs = async () => {
-        const res = await fetch('http://localhost:8080/api/technicians/')
-        if (res.ok){
-            const data = await res.json()
-            // console.log('data:', data.technicians)
-            setTechList(data.technicians)
-        } else {
-            setTechList([])
-        }
-    }
+  // function to fetch and load the list of technicians.
+  const loadTechs = async () => {
+      // GET request to the local API 
+      const res = await fetch('http://localhost:8080/api/technicians/')
+      
+      // Check if the response is successful (status code 200).
+      if (res.ok) {
+          // Parse the JSON data in the response.
+          const data = await res.json()
+          
+          // Update the 'techList' state with the technicians data fetched from the API.
+          setTechList(data.technicians)
+      } else {
+          // If the response is not successful, set 'techList' to an empty array.
+          setTechList([])
+      }
+  }
 
-useEffect(()=>{
-    loadTechs()
-},[])
+  // Use the 'useEffect' hook to call 'loadTechs' when the component is mounted.
+  useEffect(() => {
+      loadTechs()
+  }, []) // The empty dependency array ensures it's called only once when the component is mounted.
+
 
 const deleteTech = async (event) => {
   const techID = event.target.value;

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
@@ -13,79 +13,32 @@ function Nav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <DropdownButton id="dropdown-basic-button" title="Services">
       
-      <Dropdown.Item> 
-        <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/technicians"
-              >
+      <Dropdown.Item as={NavLink} to="/technicians" className="nav-link " aria-current="page"> 
                 Technicians List
-        </NavLink>
         </Dropdown.Item> 
-        <Dropdown.Item> 
-        <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/technicians/new"
-              >
+        <Dropdown.Item as={NavLink} to="/technicians/new" className="nav-link " aria-current="page"> 
                 Create Technician
-        </NavLink>
         </Dropdown.Item> 
-        <Dropdown.Item>
-        <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/appointments"
-              >
+        <Dropdown.Item as={NavLink} to="/appointments" className="nav-link " aria-current="page">
                 Appointments
-              </NavLink>
         </Dropdown.Item>
-        <Dropdown.Item>
-        <NavLink
-                className="nav-link active"
-                aria-current="page"
-                to="/appointments/new"
-              >
+        <Dropdown.Item as={NavLink} to="/appointments/new" className="nav-link " aria-current="page">
                 Create Appointment
-              </NavLink>
         </Dropdown.Item>
-        <Dropdown.Item>
-        <NavLink
-                className="nav-link "
-                aria-current="page"
-                to="/appointments/all"
-              >
+        <Dropdown.Item as={NavLink} to="/appointments/all" className="nav-link " aria-current="page">
                 Appointment History
-              </NavLink>
         </Dropdown.Item>
         </DropdownButton>
         <DropdownButton id="dropdown-basic-button ml-5" title="Inventory">
-        <Dropdown.Item>
-          <NavLink
-                className="nav-link "
-                aria-current="page"
-                to="/manufacturers/new"
-              >
+          <Dropdown.Item as={NavLink} to="/manufacturers/new" className="nav-link " aria-current="page">
                 Create Manufacturer
-              </NavLink>
+              
           </Dropdown.Item>
-          <Dropdown.Item>
-          <NavLink
-                className="nav-link "
-                aria-current="page"
-                to="/manufacturers"
-              >
+          <Dropdown.Item as={NavLink} to="/manufacturers" className="nav-link " aria-current="page">
                 Manufacturer List
-              </NavLink>
           </Dropdown.Item>
-          <Dropdown.Item>
-          <NavLink
-                className="nav-link "
-                aria-current="page"
-                to="/models"
-              >
-               Models List
-              </NavLink>
+          <Dropdown.Item as={NavLink} to="/models" className="nav-link " aria-current="page">
+                Model List
           </Dropdown.Item>
          
         </DropdownButton>
