@@ -64,35 +64,38 @@ After cloning the repo run the following commands:
         - Set appointment status to "canceled" : "PUT"  appointments/:id/cancel/
         - Set appointment status to "finished" : "PUT"  appointments/:id/finish/
 
-- Models
+- Models - fields are self explainitory unless noted otherwise
     + Technician Model:
-        - First Name
+        - First Name 
         - Last Name
         - Employee Id
 
     + Appointment Model:
-        - Date Time - 
-        - Reason -
-        - Status
-        - Vin - not neccassarily unique
+        - Date Time 
+        - Reason - Reason for Appointment
+        - Status - "created" is default, can toggle "finished" or "cancelled" on button click.
+        - Vin - Customers vin and not necessarily unique
         - Customer
-        - VIP
+        - VIP - Ff Appointment Model Vin matches AutomobileVO Vin customer is VIP - which manifests as a border around Appointment    ticket in Appointment List.
         - Technician - is a foreign Key and has a related name of appointment
 
     + AutomobileVO Model : This is populated from the Inventory API via a Poller.  Poller runs every 60 seconds and grabs any automobiles from Inventory and using the AutomobileVO model.   
-        - Vin - unique
+        - Vin 
         - Sold
 
 - Special Features:
 
     + VIP : 
-        - If the VIN number of a scheduled appointment matches the VIN of an AutomobileVO the appointment is marked as a VIP.  This is shown in the appointment 
+
+        - If the VIN number of a scheduled appointment matches the VIN of an AutomobileVO the appointment is marked as a VIP.  This is shown in the appointment list as a field as well as a gold border around the appointment ticket. 
+
+    + Appointment Status :
+
+        - Each appointment in the list of appointments has a button that allows a service concierge to "cancel" the appointment, or to mark the appointment as "finished". When a service appointment is canceled or finished, it no longer shows up in the list of appointments.  All Appointments will appear on the Service history page while Appointments only with the status "created" will appear on the Appointment List
 
 
 
 
-Explain your models and integration with the inventory
-microservice, here.
 
 ## Sales microservice
 
