@@ -32,6 +32,7 @@ function TechnicianForm() {
     last_name: lastName,
     employee_id: employeeId
  }
+ 
     const techUrl = `http://localhost:8080/api/technicians/`;
     const fetchConfig = {
       method: "post",
@@ -44,6 +45,7 @@ function TechnicianForm() {
     if (response.ok) {
       const newTechnician = await response.json();
       console.log(newTechnician);
+      
 
         setFirstName("");
         setLastName("");

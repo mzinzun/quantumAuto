@@ -71,6 +71,19 @@ useEffect(()=>{
   loadAppts()
 },[stateChanged])
 
+const deleteAppt = async (event) => {
+  const apptID = event.target.value;
+  console.log("e:", event)
+  const Url = `http://localhost:8080/api/appointment/${apptID}`;
+  const fetchConfig = {
+    method: "delete",
+  };
+  const response = await fetch(Url, fetchConfig);
+  if (response.status === 200) {
+    const newApptList = apptList.filter((appt) => appt.id != apptID);
+    setApptList(newApptList);
+  }
+};
 
 
 return (
@@ -103,7 +116,9 @@ return (
                                   <div className="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" className="btn btn-success " onClick={() => handleFinishStatus(appt.id)}>Finish</button>
                                         <button type="button" className="btn btn-danger" onClick={() => handleCancelStatus(appt.id)}>Cancel</button>
+                                        <button onClick={deleteAppt} className="btn btn-warning" value={appt.id}>Delete</button>
                                   </div>
+                                  
                   
                                 </div>
                               </div>

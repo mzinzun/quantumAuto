@@ -21,10 +21,12 @@ def poll(repeat=True):
             # print("content:", content)
             for car in content["autos"]:
                 AutomobileVO.objects.update_or_create(
-                    defaults = {
-                        "vin": car["vin"],
-                        "sold": car["sold"]
-                    }
+                    # defaults = {
+                    #     "vin": car["vin"],
+                    #     "sold": car["sold"]
+                    # }
+                    vin = car["vin"],
+                    sold= car["sold"]
                 )
         except Exception as e:
             print(e, file=sys.stderr)

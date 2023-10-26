@@ -60,7 +60,7 @@ function AppointmentForm() {
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
-      console.log(newAppointment);
+      // console.log(newAppointment);
 
         setDateTime("");
         setReason("");

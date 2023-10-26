@@ -19,6 +19,20 @@ useEffect(()=>{
     loadTechs()
 },[])
 
+const deleteTech = async (event) => {
+  const techID = event.target.value;
+  console.log("e:", event)
+  const Url = `http://localhost:8080/api/technicians/${techID}`;
+  const fetchConfig = {
+    method: "delete",
+  };
+  const response = await fetch(Url, fetchConfig);
+  if (response.status === 200) {
+    const newTechList = techList.filter((tech) => tech.id != techID);
+    setTechList(newTechList);
+  }
+};
+
 return (
         
     <div className="row ">
@@ -37,15 +51,15 @@ return (
           <div className="card-body">
             <h5 className="card-title">{tech.first_name} {tech.last_name}</h5>
             
-            <p className="card-text"> {tech.employee_id}</p>
+            <p className="card-text"> <span className="fw-bold">Id #:</span> {tech.employee_id}</p>
             
-            {/* <button
-                onClick={deleteShoe}
-                className="btn btn-primary"
-                value={shoe.id}
+            <button
+                onClick={deleteTech}
+                className="btn btn-danger"
+                value={tech.id}
               >
                 Delete
-              </button> */}
+              </button>
 
           </div>
         </div>
