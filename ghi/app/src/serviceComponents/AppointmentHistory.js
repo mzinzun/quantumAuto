@@ -10,7 +10,6 @@ function AppointmentHistory(){
         const res = await fetch('http://localhost:8080/api/appointments/')
         if (res.ok){
             const data = await res.json()
-            // console.log('data:', data.appointments)
             setApptList(data.appointments)
             setFilteredData(data.appointments)
         } else {
@@ -88,8 +87,6 @@ const search = (e)=>{
 // }
 
 
-
-
 return (
         
     <div className="row ">
@@ -108,7 +105,6 @@ return (
         <button type="submit">Submit</button> {/* Add a submit button */}
       {/* </form> */} 
               <input
-              
                 onChange={search}
                 placeholder="Search Vin"
                 type="text"

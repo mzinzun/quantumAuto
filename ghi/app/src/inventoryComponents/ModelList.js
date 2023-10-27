@@ -8,7 +8,6 @@ function ModelList(){
         const res = await fetch('http://localhost:8100/api/models/')
         if (res.ok){
             const data = await res.json()
-            // console.log('data:', data.technicians)
             setModelList(data.models)
         } else {
             setModelList([])
@@ -37,16 +36,6 @@ return (
           <div className="card-body">
             <h5 className="card-title">{models.manufacturer.name} {models.name} </h5>
             <img src={models.picture_url}></img>
-            
-            
-            {/* <button
-                onClick={deleteShoe}
-                className="btn btn-primary"
-                value={shoe.id}
-              >
-                Delete
-              </button> */}
-
           </div>
         </div>
       </div>

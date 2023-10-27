@@ -64,7 +64,7 @@ After cloning the repo run the following commands:
         - Set appointment status to "canceled" : "PUT"  appointments/:id/cancel/
         - Set appointment status to "finished" : "PUT"  appointments/:id/finish/
 
-- Models - fields are self explainitory unless noted otherwise
+- Models - fields are self explanatory unless noted otherwise
     + Technician Model:
         - First Name 
         - Last Name
@@ -76,10 +76,10 @@ After cloning the repo run the following commands:
         - Status - "created" is default, can toggle "finished" or "cancelled" on button click.
         - Vin - Customers vin and not necessarily unique
         - Customer
-        - VIP - Ff Appointment Model Vin matches AutomobileVO Vin customer is VIP - which manifests as a border around Appointment    ticket in Appointment List.
+        - VIP - Appointment Model Vin matches AutomobileVO Vin customer is VIP - which manifests as a border around Appointment    ticket in Appointment List.
         - Technician - is a foreign Key and has a related name of appointment
 
-    + AutomobileVO Model : This is populated from the Inventory API via a Poller.  Poller runs every 60 seconds and grabs any automobiles from Inventory and using the AutomobileVO model.   
+    + AutomobileVO Model : Value Object of the the entity Automobile.  This is populated from the Inventory API via a Poller.  Poller runs every 60 seconds and grabs any automobiles from Inventory and using the AutomobileVO model.   
         - Vin 
         - Sold
 

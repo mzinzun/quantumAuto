@@ -8,7 +8,6 @@ function ManufacturerList(){
         const res = await fetch('http://localhost:8100/api/manufacturers/')
         if (res.ok){
             const data = await res.json()
-            // console.log('data:', data.technicians)
             setManuList(data.manufacturers)
         } else {
             setManuList([])

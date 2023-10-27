@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TechnicianForm() {
-  // Here is the old way of creating state hooks for every
-  // property. Can you refactor this to make it into a single
-  // data object like the ConferenceForm() above?
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -48,11 +45,6 @@ function TechnicianForm() {
       const newTechnician = await response.json();
       console.log(newTechnician);
       navigate("/technicians")
-
-        // setFirstName("");
-        // setLastName("");
-        // setEmployeeId("");
-      
     }
   };
 
@@ -60,7 +52,7 @@ function TechnicianForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 className="bg-white">Create a Technician</h1>
+          <h1 className="">Create a Technician</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input

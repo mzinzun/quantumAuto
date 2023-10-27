@@ -9,7 +9,6 @@ function AppointmentList(){
         const res = await fetch('http://localhost:8080/api/appointments/')
         if (res.ok){
             const data = await res.json()
-            // console.log('data:', data.appointments)
             setApptList(data.appointments)
         } else {
             setApptList([])
@@ -64,19 +63,19 @@ useEffect(()=>{
   loadAppts()
 },[stateChanged])
 
-const deleteAppt = async (event) => {
-  const apptID = event.target.value;
-  console.log("e:", event)
-  const Url = `http://localhost:8080/api/appointment/${apptID}`;
-  const fetchConfig = {
-    method: "delete",
-  };
-  const response = await fetch(Url, fetchConfig);
-  if (response.status === 200) {
-    const newApptList = apptList.filter((appt) => appt.id != apptID);
-    setApptList(newApptList);
-  }
-};
+// const deleteAppt = async (event) => {
+//   const apptID = event.target.value;
+//   console.log("e:", event)
+//   const Url = `http://localhost:8080/api/appointment/${apptID}`;
+//   const fetchConfig = {
+//     method: "delete",
+//   };
+//   const response = await fetch(Url, fetchConfig);
+//   if (response.status === 200) {
+//     const newApptList = apptList.filter((appt) => appt.id != apptID);
+//     setApptList(newApptList);
+//   }
+// };
 
 return (
         
