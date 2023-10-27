@@ -67,9 +67,17 @@ const formatTime = (dateTime) =>
 };
 
 
-const search = (e)=>{
-    setFilteredData(apptList.filter(appointment => appointment.vin.toLowerCase().includes(e.target.value.toLowerCase())))
+const search = (e) => {
+  // Get the search text from the input field
+  const searchText = e.target.value.toLowerCase();
 
+  // Filter the appointment list based on the search text
+  const filteredAppointments = apptList.filter(appointment =>
+    appointment.vin.toLowerCase().includes(searchText)
+  );
+
+  // Update the state with the filtered data
+  setFilteredData(filteredAppointments);
 }
 
 
