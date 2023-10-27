@@ -7,7 +7,7 @@ function CreateSale(props) {
     const [salespeople, setSalesPeople] = useState([]);
     const [customers, setCustomers] = useState([]);
     async function getData(){
-        const autoURL = "http://localhost:8090/api/autosVO/";
+        const autoURL = "http://localhost:8100/api/automobiles/";
         const sellersURL = 'http://localhost:8090/api/salespeople/';
         const customerURL = 'http://localhost:8090/api/customers/';
         // fetch data for autos

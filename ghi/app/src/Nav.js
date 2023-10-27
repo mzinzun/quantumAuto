@@ -50,6 +50,9 @@ function Nav() {
                   <Dropdown.Item as={NavLink} to="/createSales" className="nav-link " aria-current="page">
                      Add Sale
                   </Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/salesHistory" className="nav-link " aria-current="page">
+                     Sales History
+                  </Dropdown.Item>
                </DropdownButton>
                <DropdownButton className="m-2" id="dropdown-basic-button" title="Inventory">
                   <Dropdown.Item as={NavLink} to="/manufacturers/new" className="nav-link " aria-current="page">
@@ -76,5 +79,4 @@ function Nav() {
       </nav>
    )
 }
-
 export default Nav;
