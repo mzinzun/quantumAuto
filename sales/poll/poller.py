@@ -15,7 +15,7 @@ from sales_rest.models import AutomobileVO
 
 def poll(repeat=True):
     def get_autos():
-        response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles")
+        response = requests.get("http://project-beta-inventory-api-1:8000/api/automobiles/")
         data = json.loads(response.content)
         print('data from poller: ', data)
         for auto in data['autos']:

@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container">
+      <div className="container wrapper">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/customers" element={<Customers />} />

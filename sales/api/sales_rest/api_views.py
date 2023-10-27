@@ -113,18 +113,24 @@ def salespeople(request):
 def delete_salesperson(request, id):
     try:
         count, _ = Salesperson.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        return JsonResponse(
+            {"message":"Salesperson Deleted"},
+            status=200
+            )
     except Exception:
         response = JsonResponse({"message": 'Can Not Delete: Salesperson on Sale'})
         response.status_code = 400
-        return JsonResponse()
+        return JsonResponse(response)
 
 
 @require_http_methods(["GET", "DELETE"])
-def delete_customer(request, id):
+def customer_delete(request, id):
     try:
         count, _ = Customer.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        return JsonResponse(
+            {"message":"Customer Deleted"},
+            status=200
+        )
     except Exception:
         response = JsonResponse({"message": 'Can Not Delete: Customer on Sale'})
         response.status_code = 400
@@ -134,7 +140,10 @@ def delete_customer(request, id):
 def delete_sale(request, id):
     try:
         count, _ = Sale.objects.filter(id=id).delete()
-        return JsonResponse({"deleted": count > 0})
+        return JsonResponse(
+            {"message": "Salesperson Deleted"},
+            status=200
+        )
     except Exception:
         response = JsonResponse({"message": 'Can Not Delete: Something is wrong!'})
         response.status_code = 400

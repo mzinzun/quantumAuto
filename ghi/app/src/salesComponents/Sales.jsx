@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"
 import { Table } from 'react-bootstrap';
 
 function Sales(props) {
     const [sales, setSales] = useState([]);
     const [update, setUpdate] = useState(false);
-    const navigate = useNavigate();
     async function getData(){
         const response = await fetch("http://localhost:8090/api/sales/")
         const result = await response.json();
@@ -17,7 +15,7 @@ function Sales(props) {
     function deleteSale(e){
       console.log('record to delete: ',e.target.id);
       const cust_id = e.target.id;
-      const delURL = `http://localhost:8090/api/sales/${cust_id}`
+      const delURL = `http://localhost:8090/api/sales/${cust_id}/`
       const response = fetch(delURL);
       console.log("response: ", response);
       let set = !update;
