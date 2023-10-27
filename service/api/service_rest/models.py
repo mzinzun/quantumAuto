@@ -8,10 +8,10 @@ class Technician(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-    
+
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
-    sold = models.BooleanField(default=True)
+    sold = models.BooleanField(default=False)
 
 class Appointment(models.Model):
     date_time = models.DateTimeField()
@@ -21,7 +21,7 @@ class Appointment(models.Model):
     customer = models.CharField(max_length=200)
     vip = models.BooleanField(default=False)
     technician = models.ForeignKey(
-        Technician, 
+        Technician,
         related_name="appointments",
         on_delete=models.CASCADE,
         null=True

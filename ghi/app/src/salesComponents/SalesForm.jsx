@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { Form, Button, FormControl } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
 
@@ -18,15 +18,8 @@ function SalesForm({autos, customers, salespeople}){
     async function handleSubmit(e){
         e.preventDefault();
         // change value of sold to true
-        console.log("formData.automobile.id: ", formData.automobile);
         const vin = formData.automobile
-        // const autoURL=`http://localhost:8100/api/automobiles/${vin}`;
         const putURL=`http://localhost:8100/api/automobiles/${vin}/`;
-        // const result = await fetch(autoURL);
-        // const autoData = await  result.json()
-        // console.log("myCar sold: ", autoData.sold);
-        // autoData.sold = true;
-        // console.log("myCar sold: ", autoData);
         const jsonString = JSON.stringify({sold:true});
         const autoConfig = {
             method: 'put',
@@ -37,7 +30,6 @@ function SalesForm({autos, customers, salespeople}){
         }
         const putResponse = await fetch(putURL,autoConfig)
         const returned = await putResponse.json()
-        console.log("returned auto: ", returned)
 
         // create sale
         const fetchURL='http://localhost:8090/api/sales/';
@@ -51,7 +43,6 @@ function SalesForm({autos, customers, salespeople}){
         };
         const response = await fetch(fetchURL, fetchConfig)
         if (response.ok) {
-            // put popup here
             setFormData(emptyFields);
             navigate('/sales');
         }

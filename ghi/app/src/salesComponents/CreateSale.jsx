@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from "react";
-
-import { Form, Button, FormControl } from 'react-bootstrap';
 import SalesForm from './SalesForm'
 
 function CreateSale(props) {
-
 
     const [autos, setAutos] = useState([]);
     const [salespeople, setSalesPeople] = useState([]);
     const [customers, setCustomers] = useState([]);
     async function getData(){
-        const autoURL='http://localhost:8100/api/automobiles/';
+        const autoURL = "http://localhost:8090/api/autosVO/";
         const sellersURL = 'http://localhost:8090/api/salespeople/';
         const customerURL = 'http://localhost:8090/api/customers/';
         // fetch data for autos
@@ -21,7 +18,7 @@ function CreateSale(props) {
         // fetch data for Sales people
         const salesPeopleData = await fetch(sellersURL);
         const holdSalesPeople = await salesPeopleData.json();
-        setSalesPeople(holdSalesPeople.sales_people);
+        setSalesPeople(holdSalesPeople.salespeople);
         // fetch data for customers
         const customersData = await fetch(customerURL);
         const holdCustomers= await customersData.json();
@@ -30,8 +27,6 @@ function CreateSale(props) {
     useEffect((props)=>{
         getData();
     },[])
-
-
 
     return (
         <>

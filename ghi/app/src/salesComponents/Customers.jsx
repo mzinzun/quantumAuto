@@ -12,11 +12,9 @@ function Customers(props){
         setUpdate(true);
     }
     function deleteCustomer(e){
-      console.log('record to delete: ',e.target.id);
       const cust_id = e.target.id;
       const delURL = `http://localhost:8090/api/customers/${cust_id}/`
       const response = fetch(delURL);
-      console.log("response: ", response);
       let set = !update;
       setUpdate(set);
     }

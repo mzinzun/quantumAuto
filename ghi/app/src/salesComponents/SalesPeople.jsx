@@ -7,17 +7,14 @@ function SalesPeople(props) {
     async function getData() {
         const response = await fetch("http://localhost:8090/api/salespeople/")
         const result = await response.json();
-        const sales_people = result.sales_people;
-        console.log('sales_people: ', sales_people);
-        setSalesPeople(sales_people);
+        const salespeople = result.salespeople;
+        setSalesPeople(salespeople);
         setUpdate(true);
     }
     function deletePerson(e) {
-        console.log('record to delete: ', e.target.id);
         const sp_id = e.target.id;
         const delURL = `http://localhost:8090/api/salespeople/${sp_id}/`
         const response = fetch(delURL);
-        console.log("response: ", response);
         let set = !update;
         setUpdate(set);
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState} from "react";
 import { useNavigate } from "react-router-dom"
 import { Form, Button } from 'react-bootstrap';
 
@@ -18,7 +18,6 @@ function CreateSalesPerson(props) {
 
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(formData);
         const fetchURL='http://localhost:8090/api/salespeople/';
         const data = {...formData}
         const fetchConfig = {

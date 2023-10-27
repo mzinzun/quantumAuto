@@ -8,16 +8,13 @@ function Sales(props) {
         const response = await fetch("http://localhost:8090/api/sales/")
         const result = await response.json();
         const data = await result.sales;
-        console.log("data: ", data);
         setSales(data)
         setUpdate(true);
     }
     function deleteSale(e){
-      console.log('record to delete: ',e.target.id);
       const cust_id = e.target.id;
       const delURL = `http://localhost:8090/api/sales/${cust_id}/`
       const response = fetch(delURL);
-      console.log("response: ", response);
       let set = !update;
       setUpdate(set);
     }

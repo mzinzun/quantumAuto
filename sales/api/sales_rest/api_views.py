@@ -73,14 +73,30 @@ def sales(request):
             encoder=SalesEncoder,
         )
     else:
-        content = json.loads(request.body)
-        print("content", content)
-        automobile = AutomobileVO.objects.get(vin=content['automobile'])
-        content['automobile'] = automobile
-        customer = Customer.objects.get(id=content['customer'])
-        content['customer'] = customer
-        salesperson = Salesperson.objects.get(id=content['salesperson'])
-        content['salesperson'] = salesperson
+        try:
+            content = json.loads(request.body)
+            print("content", content)
+            automobile = AutomobileVO.objects.get(vin=content['automobile'])
+            content['automobile'] = automobile
+            customer = Customer.objects.get(id=content['customer'])
+            content['customer'] = customer
+            salesperson = Salesperson.objects.get(id=content['salesperson'])
+            content['salesperson'] = salesperson
+        except AutomobileVO.DoesNotExist:
+            return JsonResponse(
+                {"message": 'AutomobileVO does not exist'},
+                status=404
+            )
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": 'Customer does not exist'},
+                status=404
+            )
+        except Salesperson.DoesNotExist:
+            return JsonResponse(
+                {"message": 'Salesperson does not exist'},
+                status=404
+            )
         print("content", content)
         sale = Sale.objects.create(**content)
         return JsonResponse(
@@ -95,7 +111,7 @@ def salespeople(request):
     if request.method == "GET":
         sales_people = Salesperson.objects.all()
         return JsonResponse(
-            {"sales_people": sales_people},
+            {"salespeople": sales_people},
             encoder=SalespersonEncoder,
         )
     else:
@@ -109,45 +125,49 @@ def salespeople(request):
         )
 
 
-@require_http_methods(["GET", "DELETE"])
-def delete_salesperson(request, id):
+@require_http_methods(["DELETE"])
+def salesperson_delete(request, id):
     try:
-        count, _ = Salesperson.objects.filter(id=id).delete()
+        Salesperson.objects.get(id=id).delete()
         return JsonResponse(
-            {"message":"Salesperson Deleted"},
+            {"message": "Salesperson Deleted"},
             status=200
             )
-    except Exception:
-        response = JsonResponse({"message": 'Can Not Delete: Salesperson on Sale'})
-        response.status_code = 400
-        return JsonResponse(response)
+    except Salesperson.DoesNotExist:
+        return JsonResponse(
+            {"message": 'Can Not Delete: Salesperson on Sale'},
+            status=400
+        )
 
 
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["DELETE"])
 def customer_delete(request, id):
     try:
-        count, _ = Customer.objects.filter(id=id).delete()
+        count, _ = Customer.objects.get(id=id).delete()
         return JsonResponse(
-            {"message":"Customer Deleted"},
+            {"message": "Customer Deleted"},
             status=200
         )
-    except Exception:
-        response = JsonResponse({"message": 'Can Not Delete: Customer on Sale'})
-        response.status_code = 400
-        return JsonResponse()
+    except Customer.DoesNotExist:
+        return JsonResponse(
+            {"message": 'Can Not Delete: Customer on Sale'},
+            status=404
+            )
 
 
-def delete_sale(request, id):
+@require_http_methods(["DELETE"])
+def sale_delete(request, id):
     try:
-        count, _ = Sale.objects.filter(id=id).delete()
+        Sale.objects.get(id=id).delete()
         return JsonResponse(
             {"message": "Salesperson Deleted"},
             status=200
         )
-    except Exception:
-        response = JsonResponse({"message": 'Can Not Delete: Something is wrong!'})
-        response.status_code = 400
-        return JsonResponse()
+    except Sale.DoesNotExist:
+        return JsonResponse(
+            {"message": 'Sales does not exist!'},
+            status=404
+        )
 
 
 @require_http_methods(["GET", "POST"])

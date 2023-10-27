@@ -21,7 +21,6 @@ function CreateCustomer(props) {
 
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(formData);
         const fetchURL='http://localhost:8090/api/customers/';
         const data = {...formData}
         const fetchConfig = {
