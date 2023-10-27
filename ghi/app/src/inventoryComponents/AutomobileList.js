@@ -24,7 +24,7 @@ return (
     <div className="row ">
          <div className="mt-2 mb-2">
             <Link to="/automobiles/new" className="btn btn-info btn-md ">
-            Automobile List
+            Create Automobile
             </Link>
         </div>
 
@@ -36,10 +36,10 @@ return (
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">Automobile {auto.id} </h5>
-            <p className="card-text"> <span className="fw-bold">Color</span> {auto.color}</p>
-            <p className="card-text"> <span className="fw-bold">Year</span> {auto.year}</p>
-            <p className="card-text"> <span className="fw-bold">Vin</span> {auto.vin}</p>
-            <p className="card-text"> <span className="fw-bold">Model</span> {auto.model.name}</p>
+            <p className="card-text"> <span className="fw-bold">Color</span> : {auto.color}</p>
+            <p className="card-text"> <span className="fw-bold">Year</span> : {auto.year}</p>
+            <p className="card-text"> <span className="fw-bold">Vin</span> : {auto.vin}</p>
+            <p className="card-text"> <span className="fw-bold">Make</span> : {auto.model.manufacturer.name} {auto.model.name}</p>
           </div>
         </div>
       </div>
