@@ -53,8 +53,6 @@ return (
         </div>
 
         <h1 className="mb-5 mt-3">Our Esteemed Technicians</h1>
-    
-
     {techList.map((tech, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="card">

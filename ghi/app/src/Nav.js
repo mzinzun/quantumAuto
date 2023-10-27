@@ -69,6 +69,31 @@ function Nav() {
          </div>
       </nav>
    )
+        <DropdownButton id="dropdown-basic-button ml-5" title="Inventory">
+          <Dropdown.Item as={NavLink} to="/manufacturers/new" className="nav-link " aria-current="page">
+                Create Manufacturer
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/manufacturers" className="nav-link " aria-current="page">
+                Manufacturer List
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/models" className="nav-link " aria-current="page">
+                Model List
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/models/new" className="nav-link " aria-current="page">
+                Model Form
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/automobiles/" className="nav-link " aria-current="page">
+                Automobile List
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/automobiles/new" className="nav-link " aria-current="page">
+                Automobile Form
+          </Dropdown.Item>
+        </DropdownButton>
+
+        </div>
+      </div>
+    </nav>
+  )
 }
 
 export default Nav;
