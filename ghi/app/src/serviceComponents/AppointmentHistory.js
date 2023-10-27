@@ -67,18 +67,27 @@ const formatTime = (dateTime) =>
 };
 
 
-const search = (e) => {
-  // Get the search text from the input field
-  const searchText = e.target.value.toLowerCase();
+const search = (e)=>{
+    setFilteredData(apptList.filter(appointment => appointment.vin.toLowerCase().includes(e.target.value.toLowerCase())))
 
-  // Filter the appointment list based on the search text
-  const filteredAppointments = apptList.filter(appointment =>
-    appointment.vin.toLowerCase().includes(searchText)
-  );
-
-  // Update the state with the filtered data
-  setFilteredData(filteredAppointments);
 }
+
+// const search = () => {
+//   // Filter the appointment list based on the search text
+//   const filteredAppointments = apptList.filter(appointment =>
+//     appointment.vin.toLowerCase().includes(searchText.toLowerCase())
+//   );
+
+//   // Update the state with the filtered data
+//   setFilteredData(filteredAppointments);
+// }
+
+// const handleSubmit = (e) => {
+//   e.preventDefault(); // Prevent the form from submitting and refreshing the page
+//   search(); // Call the search function when the form is submitted
+// }
+
+
 
 
 return (
@@ -86,6 +95,18 @@ return (
     <div className="row ">
          <div className="mt-2 mb-2">
          <div className="form-floating mb-3">
+          
+          {/* <form onSubmit={handleSubmit}> Add a form element and set onSubmit to call handleSubmit
+        <input
+          onChange={(e) => setSearchText(e.target.value)} // Update the searchText state
+          value={searchText} // Set the value of the input field to the searchText state
+          placeholder="Search Vin"
+          type="text"
+          name="Search"
+          id="Search"
+        />
+        <button type="submit">Submit</button> {/* Add a submit button */}
+      {/* </form> */} 
               <input
               
                 onChange={search}
