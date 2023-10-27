@@ -43,6 +43,12 @@ function Nav() {
           <Dropdown.Item as={NavLink} to="/models/new" className="nav-link " aria-current="page">
                 Model Form
           </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/automobiles/" className="nav-link " aria-current="page">
+                Automobile List
+          </Dropdown.Item>
+          <Dropdown.Item as={NavLink} to="/automobiles/new" className="nav-link " aria-current="page">
+                Automobile Form
+          </Dropdown.Item>
         </DropdownButton>
       
         </div>
