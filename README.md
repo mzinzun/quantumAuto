@@ -11,10 +11,10 @@ Team:
 ## To Run:
 After cloning the repo run the following commands:
 - cd into directory of repo and open docker desktop
-
+- docker volume create beta-data
 - docker-compose build
 - docker-compose up
-- use UI to:
+- use UI at http://localhost:3000/
     - create a Manufacturer, Model, and Automobile (in that order), in the Inventory dropdown.
     - create a Technician and Appointment (in that order) in the Services drop down
     - create a Salesperson, Customer and Sale (in that order) in the Sales drop down
