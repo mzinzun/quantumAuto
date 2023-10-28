@@ -18,13 +18,13 @@ After cloning the repo run the following commands:
     - create a Manufacturer, Model, and Automobile (in that order), in the Inventory dropdown.
     - create a Technician and Appointment (in that order) in the Services drop down
     - create a Salesperson, Customer and Sale (in that order) in the Sales drop down
-    
+
 
 
 
 ## Inventory Monolith - Port 8100:8000
 
-- Endpoints: 
+- Endpoints:
 
     + Manufactures - : the company that manufactures the automobile
         - List manufacturers : "GET"  manufacturers/
@@ -66,12 +66,12 @@ After cloning the repo run the following commands:
 
 - Models - fields are self explanatory unless noted otherwise
     + Technician Model:
-        - First Name 
+        - First Name
         - Last Name
         - Employee Id
 
     + Appointment Model:
-        - Date Time 
+        - Date Time
         - Reason - Reason for Appointment
         - Status - "created" is default, can toggle "finished" or "cancelled" on button click.
         - Vin - Customers vin and not necessarily unique
@@ -79,15 +79,15 @@ After cloning the repo run the following commands:
         - VIP - Appointment Model Vin matches AutomobileVO Vin customer is VIP - which manifests as a border around Appointment    ticket in Appointment List.
         - Technician - is a foreign Key and has a related name of appointment
 
-    + AutomobileVO Model : Value Object of the the entity Automobile.  This is populated from the Inventory API via a Poller.  Poller runs every 60 seconds and grabs any automobiles from Inventory and using the AutomobileVO model.   
-        - Vin 
+    + AutomobileVO Model : Value Object of the the entity Automobile.  This is populated from the Inventory API via a Poller.  Poller runs every 60 seconds and grabs any automobiles from Inventory and using the AutomobileVO model.
+        - Vin
         - Sold
 
 - Special Features:
 
-    + VIP : 
+    + VIP :
 
-        - If the VIN number of a scheduled appointment matches the VIN of an AutomobileVO the appointment is marked as a VIP.  This is shown in the appointment list as a field as well as a gold border around the appointment ticket. 
+        - If the VIN number of a scheduled appointment matches the VIN of an AutomobileVO the appointment is marked as a VIP.  This is shown in the appointment list as a field as well as a gold border around the appointment ticket.
 
     + Appointment Status :
 
@@ -98,6 +98,67 @@ After cloning the repo run the following commands:
 
 
 ## Sales microservice
+![alt text](/img/salesDiagram.png "Project overview")
 
-Explain your models and integration with the inventory
-microservice, here.
+### The Sales microservices represents the Sales sub-Domain of The Inventory Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Variable Object linked the the Automobile Entity in the Inventory domain.
+
+##  Models and Enpoints:
+### Customers
+        fields:
+            first_name: chaField(max=200)
+            last_name: chaField(max=200)
+            address: chaField(max=200)
+            city_state: chaField(max=100)
+            zip: chaField(max=15)
+            phone_number: chaField(max=20)
+        related endpoints:
+            customers/
+                Get: List customers
+                POST: Create Customers
+            customers/:id/
+                DELETE: Delete customer
+### SalesPerson
+        fields:
+            first_name = models.CharField(max_length=200)
+            last_name = models.CharField(max_length=200)
+            employee_id = models.CharField(max_length=50, unique=True)
+        related endpoints:
+            salespeople/
+                Get: List Sales people
+                POST: Create Sales people
+            salespeople/:id/
+                DELETE: Delete Sales person
+### Sales
+        fields:
+            automobile = models.ForeignKey(
+                AutomobileVO,
+                related_name='cars',
+                on_delete=models.PROTECT
+                )
+            salesperson = models.ForeignKey(
+                Salesperson,
+                related_name="sales",
+                on_delete=models.PROTECT)
+            customer = models.ForeignKey(
+                Customer,
+                related_name='customers',
+                on_delete=models.PROTECT
+                )
+            price = models.FloatField()
+        related endpoints:
+            sales/
+                Get: List Sales
+                POST: Create Sales
+            sales/:id/
+                DELETE: Delete Sales
+### AutomobileVO
+        fields:
+            vin = models.CharField(max_length=17, unique=True)
+            sold = models.BooleanField(default=False)
+        related endpoints:
+            autosVO/
+                GET: list Automobiles polled from Inventory.models.Automobile
+## Special Features
+###
+        Search for Sales by Salesperson:
+            allows user to list sales based on Salesperson on sale
