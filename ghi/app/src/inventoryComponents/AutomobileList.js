@@ -20,7 +20,7 @@ useEffect(()=>{
 },[])
 
 return (
-        
+
     <div className="row ">
          <div className="mt-2 mb-2">
             <Link to="/automobiles/new" className="btn btn-info btn-md ">
@@ -29,7 +29,7 @@ return (
         </div>
 
         <h1 className="mb-5 mt-3">Our Cars</h1>
-    
+
 
     {autoList.map((auto, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
@@ -40,6 +40,7 @@ return (
             <p className="card-text"> <span className="fw-bold">Year</span> : {auto.year}</p>
             <p className="card-text"> <span className="fw-bold">Vin</span> : {auto.vin}</p>
             <p className="card-text"> <span className="fw-bold">Make</span> : {auto.model.manufacturer.name} {auto.model.name}</p>
+            <p className="card-text"> <span className="fw-bold">Sold</span> :  {auto.sold?"Sold":"In Stock"}</p>
           </div>
         </div>
       </div>
