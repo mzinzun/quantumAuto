@@ -20,8 +20,6 @@ After cloning the repo run the following commands:
     - create a Salesperson, Customer and Sale (in that order) in the Sales drop down
 
 
-
-
 ## Inventory Microservice - Port 8100:8000
 
 - Endpoints:
@@ -94,11 +92,8 @@ After cloning the repo run the following commands:
         - Each appointment in the list of appointments has a button that allows a service concierge to "cancel" the appointment, or to mark the appointment as "finished". When a service appointment is canceled or finished, it no longer shows up in the list of appointments.  All Appointments will appear on the Service history page while Appointments only with the status "created" will appear on the Appointment List
 
 
-
-
-
 ## Sales microservice
-![alt text](/img/salesDiagram.png "Project overview")
+![alt text](/img/sales2Diagram.png "Project overview")
 
 ### The Sales microservices represents the Sales Domain of The Project-Beta Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Value Object linked the the Automobile Entity in the Inventory domain.
 
@@ -112,17 +107,17 @@ After cloning the repo run the following commands:
             zip
             phone_number
         related endpoints
-            customers/
+            http://localhost:8090/api/customers/
                 Get: List customers
-                POST: Create Customers
-            customers/:id/
+                POST: when submitting the create Customer form
+            http://localhost:8090/api/customers/:id/
                 DELETE: Delete customer
 ### SalesPerson
         fields:
             first_name
             last_name
             employee_id
-        related endpoints:
+        endpoints:
             http://localhost:8090/api/salespeople/
                 Get: List Sales people
                 POST: when submitting the create Salesperson form
@@ -130,16 +125,10 @@ After cloning the repo run the following commands:
                 DELETE: Delete Sales person
 ### Sales
         fields:
-            automobile = models.ForeignKey(
-                AutomobileVO,
-                related_name='cars',
-                on_delete=models.PROTECT
-                )
-            salesperson = models.ForeignKey(
-                Salesperson)
-            customer = models.ForeignKey(
-                Customer)
-            price = models.FloatField()
+            automobile = models.ForeignKey(AutomobileVO)
+            salesperson = models.ForeignKey(Salesperson)
+            customer = models.ForeignKey(Customer)
+            price
         endpoints:
             http://localhost:8090/api/sales/
                 Get: List Sales
@@ -150,8 +139,8 @@ After cloning the repo run the following commands:
         fields:
             vin
             sold
-        related endpoints:
-            autosVO/
+        endpoints:
+            http://localhost:8090/api/autosVO/
                 GET: list Automobiles polled from Inventory.models.Automobile
 ## Special Features
         Search for Sales by Salesperson:
