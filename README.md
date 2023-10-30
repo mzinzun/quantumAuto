@@ -100,7 +100,7 @@ After cloning the repo run the following commands:
 ## Sales microservice
 ![alt text](/img/salesDiagram.png "Project overview")
 
-### The Sales microservices represents the Sales sub-Domain of The Inventory Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Variable Object linked the the Automobile Entity in the Inventory domain.
+### The Sales microservices represents the Sales sub-Domain of The Inventory Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Value Object linked the the Automobile Entity in the Inventory domain.
 
 ##  Models and Enpoints:
 ### Customers
