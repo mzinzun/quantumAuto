@@ -105,13 +105,13 @@ After cloning the repo run the following commands:
 ##  Models and Enpoints:
 ### Customers
         fields:
-            first_name: chaField(max=200)
-            last_name: chaField(max=200)
-            address: chaField(max=200)
-            city_state: chaField(max=100)
-            zip: chaField(max=15)
-            phone_number: chaField(max=20)
-        related endpoints:
+            first_name
+            last_name
+            address
+            city_state
+            zip
+            phone_number
+        related endpoints
             customers/
                 Get: List customers
                 POST: Create Customers
@@ -119,14 +119,14 @@ After cloning the repo run the following commands:
                 DELETE: Delete customer
 ### SalesPerson
         fields:
-            first_name = models.CharField(max_length=200)
-            last_name = models.CharField(max_length=200)
-            employee_id = models.CharField(max_length=50, unique=True)
+            first_name
+            last_name
+            employee_id
         related endpoints:
-            salespeople/
+            http://localhost:8090/api/salespeople/
                 Get: List Sales people
-                POST: Create Sales people
-            salespeople/:id/
+                POST: when submitting the create Salesperson form
+            http://localhost:8090/api/salespeople/:id/
                 DELETE: Delete Sales person
 ### Sales
         fields:
@@ -136,29 +136,23 @@ After cloning the repo run the following commands:
                 on_delete=models.PROTECT
                 )
             salesperson = models.ForeignKey(
-                Salesperson,
-                related_name="sales",
-                on_delete=models.PROTECT)
+                Salesperson)
             customer = models.ForeignKey(
-                Customer,
-                related_name='customers',
-                on_delete=models.PROTECT
-                )
+                Customer)
             price = models.FloatField()
-        related endpoints:
-            sales/
+        endpoints:
+            http://localhost:8090/api/sales/
                 Get: List Sales
-                POST: Create Sales
-            sales/:id/
-                DELETE: Delete Sales
+                POST: when submitting the create sale form
+            http://localhost:8090/api/sales/:id/
+                DELETE: Delete a sale Sale
 ### AutomobileVO
         fields:
-            vin = models.CharField(max_length=17, unique=True)
-            sold = models.BooleanField(default=False)
+            vin
+            sold
         related endpoints:
             autosVO/
                 GET: list Automobiles polled from Inventory.models.Automobile
 ## Special Features
-###
         Search for Sales by Salesperson:
             allows user to list sales based on Salesperson on sale
