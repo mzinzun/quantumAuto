@@ -2,15 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function AppointmentForm() {
-
+  // State variables to manage form input values
   const [dateTime, setDateTime] = useState("");
   const [reason, setReason] = useState("");
   const [vin, setVin] = useState("");
   const [customer, setCustomer] = useState("");
   const [technicians, setTechnicians] = useState([]);
   const [technician, setTechnician] = useState("");
-  const navigate = useNavigate()
 
+  // Access the navigation function from React Router
+  const navigate = useNavigate();
+
+  // Event handler functions to update state on input changes
   const handleDateTimeChange = (event) => {
     const value = event.target.value;
     setDateTime(value);
@@ -25,28 +28,35 @@ function AppointmentForm() {
     const value = event.target.value;
     setVin(value);
   };
+
   const handleCustomerChange = (event) => {
     const value = event.target.value;
     setCustomer(value);
   };
+
   const handleTechnicianChange = (event) => {
     const value = event.target.value;
     setTechnician(value);
   };
 
+  // Event handler for form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Prepare the data to be sent to the server
     const data = {
-    date_time: dateTime,
-    reason: reason,
-    vin: vin,
-    status: "created",
-    customer: customer,
-    technician: technician,
+      date_time: dateTime,
+      reason: reason,
+      vin: vin,
+      status: "created",
+      customer: customer,
+      technician: technician,
+    };
 
- }
+    // Define the URL for the appointment creation
     const appointmentUrl = `http://localhost:8080/api/appointments/`;
+
+    // Configuration for the HTTP request
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -54,27 +64,31 @@ function AppointmentForm() {
         "Content-Type": "application/json",
       },
     };
+
+    // Send the appointment data to the server
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
+      // If the response is successful, navigate to the appointments page
       const newAppointment = await response.json();
-      
-        navigate("/appointments")
+      navigate("/appointments");
 
-        // look into form validation errors instead of "require attribute"
+      // You may want to handle form validation errors here as well
     }
   };
 
+  // Function to load technicians from the server
   const loadTechs = async () => {
-    const res = await fetch('http://localhost:8080/api/technicians/')
-    if (res.ok){
-        const data = await res.json()
-        setTechnicians(data.technicians)
-    } 
-}
+    const res = await fetch('http://localhost:8080/api/technicians/');
+    if (res.ok) {
+      const data = await res.json();
+      setTechnicians(data.technicians);
+    }
+  }
 
-useEffect(()=>{
-loadTechs()
-},[])
+  // Use the useEffect hook to load technicians when the component mounts
+  useEffect(() => {
+    loadTechs();
+  }, []);
 
   return (
     <div className="row">

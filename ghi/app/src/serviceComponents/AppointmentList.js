@@ -1,67 +1,76 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function AppointmentList(){
-    const [apptList, setApptList] = useState([])
-    const [stateChanged, setStateChanged] = useState(true)
+function AppointmentList() {
+  // State to store the list of appointments and to trigger re-renders
+  const [apptList, setApptList] = useState([]);
+  const [stateChanged, setStateChanged] = useState(true);
 
-    const loadAppts = async () => {
-        const res = await fetch('http://localhost:8080/api/appointments/')
-        if (res.ok){
-            const data = await res.json()
-            setApptList(data.appointments)
-        } else {
-            setApptList([])
-        }
-        
-    }
+  // Function to fetch and load appointments from the API
+  const loadAppts = async () => {
+      const res = await fetch('http://localhost:8080/api/appointments/');
+      if (res.ok) {
+          const data = await res.json();
+          setApptList(data.appointments);
+      } else {
+          setApptList([]);
+      }
+  }
 
-const handleFinishStatus = async (appointmentId)=>{
-  const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`
-  const fetchConfig = {
-    method: "put",
+  // Function to mark an appointment as finished
+  const handleFinishStatus = async (appointmentId) => {
+      const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`;
+      const fetchConfig = {
+          method: "put",
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.status === 200) {
+          // Toggle the stateChanged flag to trigger a re-render
+          let temp = !stateChanged;
+          setStateChanged(temp);
+          console.log(`Appointment ${appointmentId} is finished`);
+      }
+  }
+
+  // Function to mark an appointment as canceled
+  const handleCancelStatus = async (appointmentId) => {
+      const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`;
+      const fetchConfig = {
+          method: "put",
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.status === 200) {
+          // Toggle the stateChanged flag to trigger a re-render
+          let temp = !stateChanged;
+          setStateChanged(temp);
+          console.log(`Appointment ${appointmentId} is canceled`);
+      }
+  }
+
+  // Function to format a date
+  const formatDate = (dateTime) => {
+      const options = {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+      };
+      return new Date(dateTime).toLocaleString(undefined, options);
   };
-  const response = await fetch(url, fetchConfig);
-  if (response.status === 200) {
-    let temp = !stateChanged
-    setStateChanged(temp)
-    console.log(`Appointment ${appointmentId} is finished`)
-}}
 
-const handleCancelStatus = async (appointmentId)=>{
-  const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`
-  const fetchConfig = {
-    method: "put",
+  // Function to format a time
+  const formatTime = (dateTime) => {
+      const options = {
+          hour: '2-digit',
+          minute: '2-digit',
+      };
+      return new Date(dateTime).toLocaleString(undefined, options);
   };
-  const response = await fetch(url, fetchConfig);
-  if (response.status === 200) {
-    let temp = !stateChanged
-    setStateChanged(temp)
-    console.log(`Appointment ${appointmentId} is cancelled`)
-}}
 
-const formatDate = (dateTime) =>
-{
-    const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    };
-    return new Date(dateTime).toLocaleString(undefined, options);
-};
+  // Use the useEffect hook to load appointments when the stateChanged flag changes
+  useEffect(() => {
+      loadAppts();
+  }, [stateChanged]);
 
-const formatTime = (dateTime) =>
-{
-    const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-    };
-    return new Date(dateTime).toLocaleString(undefined, options);
-};
-
-useEffect(()=>{
-  loadAppts()
-},[stateChanged])
 
 // const deleteAppt = async (event) => {
 //   const apptID = event.target.value;
