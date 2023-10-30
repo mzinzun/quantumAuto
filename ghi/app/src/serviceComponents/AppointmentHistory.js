@@ -1,75 +1,80 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function AppointmentHistory(){
-    const [apptList, setApptList] = useState([])
-    const [filteredData, setFilteredData] = useState([])
-    const [stateChanged, setStateChanged] = useState(true)
+function AppointmentHistory() {
+  // State variables to manage appointment data
+  const [apptList, setApptList] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [stateChanged, setStateChanged] = useState(true);
 
-    const loadAppts = async () => {
-        const res = await fetch('http://localhost:8080/api/appointments/')
-        if (res.ok){
-            const data = await res.json()
-            setApptList(data.appointments)
-            setFilteredData(data.appointments)
-        } else {
-            setApptList([])
-        }
-        
-    }
-    const handleFinishStatus = async (appointmentId)=>{
-        const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`
-        const fetchConfig = {
+  // Function to load appointment data from the server
+  const loadAppts = async () => {
+      const res = await fetch('http://localhost:8080/api/appointments/');
+      if (res.ok) {
+          const data = await res.json();
+          // Set the appointment list and filtered data from the server response
+          setApptList(data.appointments);
+          setFilteredData(data.appointments);
+      } else {
+          setApptList([]);
+      }
+  }
+
+  // Function to mark an appointment as finished
+  const handleFinishStatus = async (appointmentId) => {
+      const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`;
+      const fetchConfig = {
           method: "put",
-        };
-        const response = await fetch(url, fetchConfig);
-        if (response.status === 200) {
-          let temp = !stateChanged
-          setStateChanged(temp)
-          console.log(`Appointment ${appointmentId} is finished`)
-      }}
-      
-      
-      const handleCancelStatus = async (appointmentId)=>{
-        const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`
-        const fetchConfig = {
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.status === 200) {
+          let temp = !stateChanged;
+          setStateChanged(temp);
+          console.log(`Appointment ${appointmentId} is finished`);
+      }
+  }
+
+  // Function to cancel an appointment
+  const handleCancelStatus = async (appointmentId) => {
+      const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`;
+      const fetchConfig = {
           method: "put",
-        };
-        const response = await fetch(url, fetchConfig);
-        if (response.status === 200) {
-          let temp = !stateChanged
-          setStateChanged(temp)
-          console.log(`Appointment ${appointmentId} is cancelled`)
-      }}
+      };
+      const response = await fetch(url, fetchConfig);
+      if (response.status === 200) {
+          let temp = !stateChanged;
+          setStateChanged(temp);
+          console.log(`Appointment ${appointmentId} is canceled`);
+      }
+  }
 
-useEffect(()=>{
-  loadAppts()
-},[stateChanged])
+  // Load appointments when the component is mounted or 'stateChanged' changes
+  useEffect(() => {
+      loadAppts();
+  }, [stateChanged]);
 
-const formatDate = (dateTime) =>
-{
-    const options = {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    };
-    return new Date(dateTime).toLocaleString(undefined, options);
-};
+  // Helper functions to format date and time
+  const formatDate = (dateTime) => {
+      const options = {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+      };
+      return new Date(dateTime).toLocaleString(undefined, options);
+  };
 
-const formatTime = (dateTime) =>
-{
-    const options = {
-        hour: '2-digit',
-        minute: '2-digit',
-    };
-    return new Date(dateTime).toLocaleString(undefined, options);
-};
+  const formatTime = (dateTime) => {
+      const options = {
+          hour: '2-digit',
+          minute: '2-digit',
+      };
+      return new Date(dateTime).toLocaleString(undefined, options);
+  };
 
-
-const search = (e)=>{
-    setFilteredData(apptList.filter(appointment => appointment.vin.toLowerCase().includes(e.target.value.toLowerCase())))
-
-}
+  // Function to filter appointments based on the search input
+  const search = (e) => {
+      setFilteredData(apptList.filter(appointment => appointment.vin.toLowerCase().includes(e.target.value.toLowerCase())))
+  }
 
 // const search = () => {
 //   // Filter the appointment list based on the search text

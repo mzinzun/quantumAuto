@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TechnicianForm() {
-
+  // State variables to manage form input values
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate(); // Access the navigation function from React Router
   
+  // Event handler functions to update state on input changes
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
     setFirstName(value);
@@ -23,16 +24,21 @@ function TechnicianForm() {
     setEmployeeId(value);
   };
 
+  // Event handler for form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Prepare the data to be sent to the server
     const data = {
-    first_name: firstName,
-    last_name: lastName,
-    employee_id: employeeId
- }
- 
+      first_name: firstName,
+      last_name: lastName,
+      employee_id: employeeId
+    };
+
+    // Define the URL for creating a new technician
     const techUrl = `http://localhost:8080/api/technicians/`;
+
+    // Configuration for the HTTP request
     const fetchConfig = {
       method: "post",
       body: JSON.stringify(data),
@@ -40,11 +46,14 @@ function TechnicianForm() {
         "Content-Type": "application/json",
       },
     };
+
+    // Send the technician data to the server
     const response = await fetch(techUrl, fetchConfig);
     if (response.ok) {
+      // If the response is successful, log the new technician and navigate to the technicians page
       const newTechnician = await response.json();
       console.log(newTechnician);
-      navigate("/technicians")
+      navigate("/technicians");
     }
   };
 
