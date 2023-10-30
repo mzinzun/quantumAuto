@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
-      <div className="container wrapper">
+      <div className="container-fluid wrapper">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/customers" element={<Customers />} />

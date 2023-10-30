@@ -29,10 +29,10 @@ function CreateSale(props) {
     },[])
 
     return (
-        <>
+        <div className="w-75 mx-auto salesMain">
             <h1>Record a new sale</h1>
             <SalesForm autos={autos} customers={customers} salespeople={salespeople}/>
-        </>
+        </div>
     )
 }
 export default CreateSale

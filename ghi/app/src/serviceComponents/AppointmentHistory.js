@@ -15,7 +15,7 @@ function AppointmentHistory(){
         } else {
             setApptList([])
         }
-        
+
     }
     const handleFinishStatus = async (appointmentId)=>{
         const url = `http://localhost:8080/api/appointments/${appointmentId}/finish/`
@@ -28,8 +28,8 @@ function AppointmentHistory(){
           setStateChanged(temp)
           console.log(`Appointment ${appointmentId} is finished`)
       }}
-      
-      
+
+
       const handleCancelStatus = async (appointmentId)=>{
         const url = `http://localhost:8080/api/appointments/${appointmentId}/cancel/`
         const fetchConfig = {
@@ -88,11 +88,11 @@ const search = (e)=>{
 
 
 return (
-        
-    <div className="row ">
+
+    <div className="row services">
          <div className="mt-2 mb-2">
          <div className="form-floating mb-3">
-          
+
           {/* <form onSubmit={handleSubmit}> Add a form element and set onSubmit to call handleSubmit
         <input
           onChange={(e) => setSearchText(e.target.value)} // Update the searchText state
@@ -103,7 +103,7 @@ return (
           id="Search"
         />
         <button type="submit">Submit</button> {/* Add a submit button */}
-      {/* </form> */} 
+      {/* </form> */}
               <input
                 onChange={search}
                 placeholder="Search Vin"
@@ -118,7 +118,7 @@ return (
          </div>
 
         <h1 className="mb-5 mt-3">Appointment History</h1>
-    
+
         {filteredData.map((appt,i) =>
                     {
                         {
@@ -139,7 +139,7 @@ return (
                                         <button type="button" className="btn btn-success " onClick={() => handleFinishStatus(appt.id)}>Finish</button>
                                         <button type="button" className="btn btn-danger" onClick={() => handleCancelStatus(appt.id)}>Cancel</button>
                                   </div>
-                  
+
                                 </div>
                               </div>
                             </div>

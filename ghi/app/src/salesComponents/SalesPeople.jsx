@@ -22,7 +22,7 @@ function SalesPeople(props) {
         getData();
     }, [update])
     return (
-        <>
+        <div className="w-75 mx-auto salesMain">
             <h1>List of Sales People</h1>
             <Table striped bordered hover>
                 <thead>
@@ -47,7 +47,7 @@ function SalesPeople(props) {
                     })}
                 </tbody>
             </Table>
-        </>
+        </div>
     )
 }
 export default SalesPeople
