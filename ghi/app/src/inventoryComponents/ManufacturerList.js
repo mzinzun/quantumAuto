@@ -19,8 +19,8 @@ useEffect(()=>{
 },[])
 
 return (
-        
-    <div className="row ">
+
+    <div className="row services">
          <div className="mt-2 mb-2">
             <Link to="/manufacturers/new" className="btn btn-info btn-md ">
             Add A Manufacturer
@@ -28,16 +28,16 @@ return (
         </div>
 
         <h1 className="mb-5 mt-3">Our Esteemed Manufacturers</h1>
-    
+
 
     {manuList.map((manu, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="card">
           <div className="card-body">
             <h5 className="card-title">{manu.name} </h5>
-            
+
             <p className="card-text"> </p>
-            
+
             {/* <button
                 onClick={deleteShoe}
                 className="btn btn-primary"

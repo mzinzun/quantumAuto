@@ -19,8 +19,8 @@ useEffect(()=>{
 },[])
 
 return (
-        
-    <div className="row ">
+
+    <div className="row services">
          <div className="mt-2 mb-2">
             <Link to="/models/new" className="btn btn-info btn-md ">
             Add A Models
@@ -28,14 +28,15 @@ return (
         </div>
 
         <h1 className="mb-5 mt-3">Our Esteemed Models</h1>
-    
+
 
     {modelList.map((models, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="card">
+        <img src={models.picture_url} alt={models.name}/>
           <div className="card-body">
             <h5 className="card-title">{models.manufacturer.name} {models.name} </h5>
-            <img src={models.picture_url}></img>
+
           </div>
         </div>
       </div>
