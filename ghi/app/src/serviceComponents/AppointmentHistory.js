@@ -94,7 +94,7 @@ function AppointmentHistory() {
 
 return (
 
-    <div className="row services">
+    <div className="services">
          <div className="mt-2 mb-2">
          <div className="form-floating mb-3">
 
@@ -123,7 +123,7 @@ return (
          </div>
 
         <h1 className="mb-5 mt-3">Appointment History</h1>
-
+        <div className="row">
         {filteredData.map((appt,i) =>
                     {
                         {
@@ -151,6 +151,7 @@ return (
                             );
                         }
                     })}
+                    </div>
     </div>
 )
 

@@ -56,10 +56,10 @@ function TechnicianForm() {
   };
 
   return (
-    <div className="row">
+    <div className="row services">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 className="text-light px-2 bg-dark">Create a Technician</h1>
+          <h1 className="px-2 bg-dark ">Create a Technician</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input
