@@ -21,7 +21,7 @@ useEffect(()=>{
 
 return (
 
-    <div className="row services">
+    <div className="services">
          <div className="mt-2 mb-2">
             <Link to="/automobiles/new" className="btn btn-info btn-md ">
             Create Automobile
@@ -30,7 +30,7 @@ return (
 
         <h1 className="mb-5 mt-3">Our Cars</h1>
 
-
+      <div className="row">
     {autoList.map((auto, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="card">
@@ -46,6 +46,7 @@ return (
       </div>
     )
     )}
+    </div>
   </div>
 )
 

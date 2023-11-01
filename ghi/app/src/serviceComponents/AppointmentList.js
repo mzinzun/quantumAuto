@@ -88,7 +88,7 @@ function AppointmentList() {
 
 return (
         
-    <div className="row ">
+    <div className="services">
          <div className="mt-2 mb-2">
             <Link to="/appointments/new" className="btn btn-info btn-md ">
             Add Appointment
@@ -96,7 +96,7 @@ return (
          </div>
 
         <h1 className="mb-5 mt-3">Appointment Tickets</h1>
-    
+        <div className="row">
         {apptList.map((appt, i) =>
                     {
                         if (appt.status === "created")
@@ -126,6 +126,7 @@ return (
                             );
                         }
                     })}
+                    </div>
     </div>
   )
 

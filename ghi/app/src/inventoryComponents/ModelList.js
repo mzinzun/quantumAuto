@@ -20,7 +20,7 @@ function ModelList() {
 
   return (
 
-    <div className="row services">
+    <div className="services">
       <div className="mt-2 mb-2">
         <Link to="/models/new" className="btn btn-info btn-md ">
           Add A Models
@@ -29,6 +29,7 @@ function ModelList() {
 
       <h1 className="mb-5 mt-3">Our Esteemed Models</h1>
 
+      <div className="row">
 
       {modelList.map((models, i) => (
         <div className="col-lg-4 col-md-6 mb-4" key={i}>
@@ -41,6 +42,7 @@ function ModelList() {
         </div>
       )
       )}
+      </div>
     </div>
   )
 

@@ -45,7 +45,7 @@ const deleteTech = async (event) => {
 
 return (
 
-    <div className="row services">
+    <div className="services">
          <div className="mt-2 mb-2">
             <Link to="/technicians/new" className="btn btn-info btn-md ">
             Add A Tech
@@ -53,6 +53,7 @@ return (
         </div>
 
         <h1 className="mb-5 mt-3 ">Our Esteemed Technicians</h1>
+        <div className="row">
     {techList.map((tech, i) => (
       <div className="col-lg-4 col-md-6 mb-4" key={i}>
         <div className="card">
@@ -74,6 +75,7 @@ return (
       </div>
     )
     )}
+    </div>
   </div>
 )
 

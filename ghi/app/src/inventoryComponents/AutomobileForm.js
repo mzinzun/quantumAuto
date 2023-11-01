@@ -71,10 +71,10 @@ loadModels()
 },[])
 
   return (
-    <div className="row">
+    <div className="row services">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 className="bg-white">Create an Automobile</h1>
+          <h1 className="bg-dark px-2">Create an Automobile</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input
