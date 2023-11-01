@@ -58,7 +58,7 @@ function SalesForm({autos, customers, salespeople}){
                     onChange={handleChange}
                     value={formData.automobile}>
                         <option value="">Select Vehicle</option>
-                        {autos.map((auto,idx)=><option key={idx} value={auto.vin}>{auto.vin}</option>)}
+                        {autos.map((auto,idx)=><option key={idx} value={auto.vin}>{auto.vin}: {auto.model.manufacturer.name} {auto.model.name}</option>)}
 
                 </FormControl>
             </Form.Group>

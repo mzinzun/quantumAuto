@@ -15,6 +15,7 @@ function CreateSale(props) {
         const holdAutos = await autosData.json();
         const filteredAutos = (holdAutos.autos).filter(auto=>auto.sold === false);
         setAutos(filteredAutos)
+        console.log("autos", filteredAutos)
         // fetch data for Sales people
         const salesPeopleData = await fetch(sellersURL);
         const holdSalesPeople = await salesPeopleData.json();
