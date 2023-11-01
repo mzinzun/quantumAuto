@@ -27,15 +27,15 @@ class Sale(models.Model):
     automobile = models.ForeignKey(
         AutomobileVO,
         related_name='cars',
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
         )
     salesperson = models.ForeignKey(
         Salesperson,
         related_name="sales",
-        on_delete=models.PROTECT)
+        on_delete=models.CASCADE)
     customer = models.ForeignKey(
         Customer,
         related_name='customers',
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
         )
     price = models.FloatField()

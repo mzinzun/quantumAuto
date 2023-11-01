@@ -35,7 +35,7 @@ function CreateSalesPerson(props) {
         }
     };
     return (
-        <>
+        <div className="w-75 mx-auto salesMain">
             <h1>Create Sales Person</h1>
             <Form className="w-50" onSubmit={handleSubmit}>
             <Form.Group>
@@ -76,7 +76,7 @@ function CreateSalesPerson(props) {
                 Submit
             </Button>
         </Form>
-        </>
+        </div>
     )
 }
 export default CreateSalesPerson

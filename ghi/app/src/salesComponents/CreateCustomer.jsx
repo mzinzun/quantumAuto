@@ -39,7 +39,7 @@ function CreateCustomer(props) {
     };
 
     return (
-        <>
+        <div className="w-75 mx-auto salesMain">
         <h1>Create Customer</h1>
         <Form className="w-50" onSubmit={handleSubmit}>
             <Form.Group>
@@ -112,7 +112,7 @@ function CreateCustomer(props) {
                 Submit
             </Button>
         </Form>
-        </>
+        </div>
     );
 };
 

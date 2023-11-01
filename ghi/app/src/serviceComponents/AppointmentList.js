@@ -127,8 +127,8 @@ return (
                         }
                     })}
     </div>
-)
+  )
 
-    }
+}
 
 export default AppointmentList;

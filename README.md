@@ -20,9 +20,7 @@ After cloning the repo run the following commands:
     - create a Salesperson, Customer and Sale (in that order) in the Sales drop down
 
 
-
-
-## Inventory Monolith - Port 8100:8000
+## Inventory Microservice - Port 8100:8000
 
 - Endpoints:
 
@@ -94,71 +92,56 @@ After cloning the repo run the following commands:
         - Each appointment in the list of appointments has a button that allows a service concierge to "cancel" the appointment, or to mark the appointment as "finished". When a service appointment is canceled or finished, it no longer shows up in the list of appointments.  All Appointments will appear on the Service history page while Appointments only with the status "created" will appear on the Appointment List
 
 
-
-
-
 ## Sales microservice
-![alt text](/img/salesDiagram.png "Project overview")
+![alt text](/img/sales2Diagram.png "Project overview")
 
-### The Sales microservices represents the Sales sub-Domain of The Inventory Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Variable Object linked the the Automobile Entity in the Inventory domain.
+### The Sales microservices represents the Sales Domain of The Project-Beta Monolith.  It isolates data related to customers, sales people, and sales.  The Data entities consists of Customers, SalesPeople, and Sales.  There is also a Value Object linked the the Automobile Entity in the Inventory domain.
 
 ##  Models and Enpoints:
 ### Customers
         fields:
-            first_name: chaField(max=200)
-            last_name: chaField(max=200)
-            address: chaField(max=200)
-            city_state: chaField(max=100)
-            zip: chaField(max=15)
-            phone_number: chaField(max=20)
-        related endpoints:
-            customers/
+            first_name
+            last_name
+            address
+            city_state
+            zip
+            phone_number
+        related endpoints
+            http://localhost:8090/api/customers/
                 Get: List customers
-                POST: Create Customers
-            customers/:id/
+                POST: when submitting the create Customer form
+            http://localhost:8090/api/customers/:id/
                 DELETE: Delete customer
 ### SalesPerson
         fields:
-            first_name = models.CharField(max_length=200)
-            last_name = models.CharField(max_length=200)
-            employee_id = models.CharField(max_length=50, unique=True)
-        related endpoints:
-            salespeople/
+            first_name
+            last_name
+            employee_id
+        endpoints:
+            http://localhost:8090/api/salespeople/
                 Get: List Sales people
-                POST: Create Sales people
-            salespeople/:id/
+                POST: when submitting the create Salesperson form
+            http://localhost:8090/api/salespeople/:id/
                 DELETE: Delete Sales person
 ### Sales
         fields:
-            automobile = models.ForeignKey(
-                AutomobileVO,
-                related_name='cars',
-                on_delete=models.PROTECT
-                )
-            salesperson = models.ForeignKey(
-                Salesperson,
-                related_name="sales",
-                on_delete=models.PROTECT)
-            customer = models.ForeignKey(
-                Customer,
-                related_name='customers',
-                on_delete=models.PROTECT
-                )
-            price = models.FloatField()
-        related endpoints:
-            sales/
+            automobile = models.ForeignKey(AutomobileVO)
+            salesperson = models.ForeignKey(Salesperson)
+            customer = models.ForeignKey(Customer)
+            price
+        endpoints:
+            http://localhost:8090/api/sales/
                 Get: List Sales
-                POST: Create Sales
-            sales/:id/
-                DELETE: Delete Sales
+                POST: when submitting the create sale form
+            http://localhost:8090/api/sales/:id/
+                DELETE: Delete a sale Sale
 ### AutomobileVO
         fields:
-            vin = models.CharField(max_length=17, unique=True)
-            sold = models.BooleanField(default=False)
-        related endpoints:
-            autosVO/
+            vin
+            sold
+        endpoints:
+            http://localhost:8090/api/autosVO/
                 GET: list Automobiles polled from Inventory.models.Automobile
 ## Special Features
-###
         Search for Sales by Salesperson:
             allows user to list sales based on Salesperson on sale

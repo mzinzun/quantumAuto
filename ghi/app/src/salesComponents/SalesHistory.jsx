@@ -35,9 +35,9 @@ function SalesHistory(props) {
         getData();
     }, [update])
     return (
-        <>
+        <div className="w-75 mx-auto salesMain">
             <h1>Sales History</h1>
-            <Form className="w-50" onSubmit={handleSearch}>
+            <Form className="w-25" onSubmit={handleSearch}>
             <Form.Label>Sales Person</Form.Label>
                 <FormControl as="select"
                     id="salesperson"
@@ -49,7 +49,7 @@ function SalesHistory(props) {
                 </FormControl>
             <Button variant="primary" type="submit" >Search</Button>
             </Form>
-            <Table striped className= " tb bordered hover text-success">
+            <Table striped className= " w-75 tb bordered hover text-success">
                 <thead>
                     <tr>
                         <th>Employee</th>
@@ -71,7 +71,7 @@ function SalesHistory(props) {
                     })}
                 </tbody>
             </Table>
-        </>
+        </div>
     )
 }
 export default SalesHistory

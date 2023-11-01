@@ -23,7 +23,7 @@ function Customers(props){
     },[update])
 
   return (
-    <>
+    <div className="w-75 mx-auto salesMain">
     <h1>Customers List</h1>
     <Table striped bordered hover>
       <thead>
@@ -56,7 +56,7 @@ function Customers(props){
         })}
       </tbody>
     </Table>
-    </>
+    </div>
   );
 }
 

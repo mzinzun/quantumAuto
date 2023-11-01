@@ -70,20 +70,21 @@ function AppointmentForm() {
     if (response.ok) {
       // If the response is successful, navigate to the appointments page
       const newAppointment = await response.json();
-      navigate("/appointments");
+      
+        navigate("/appointments")
 
-      // You may want to handle form validation errors here as well
+        // look into form validation errors instead of "require attribute"
     }
   };
 
   // Function to load technicians from the server
   const loadTechs = async () => {
-    const res = await fetch('http://localhost:8080/api/technicians/');
-    if (res.ok) {
-      const data = await res.json();
-      setTechnicians(data.technicians);
-    }
-  }
+    const res = await fetch('http://localhost:8080/api/technicians/')
+    if (res.ok){
+        const data = await res.json()
+        setTechnicians(data.technicians)
+    } 
+}
 
   // Use the useEffect hook to load technicians when the component mounts
   useEffect(() => {
@@ -94,7 +95,7 @@ function AppointmentForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 >Create a Service Appointment</h1>
+          <h1 className="px-2 bg-light">Create a Service Appointment</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input

@@ -6,9 +6,8 @@ function TechnicianForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [employeeId, setEmployeeId] = useState("");
-  const navigate = useNavigate(); // Access the navigation function from React Router
+  const navigate = useNavigate()
   
-  // Event handler functions to update state on input changes
   const handleFirstNameChange = (event) => {
     const value = event.target.value;
     setFirstName(value);
@@ -30,12 +29,11 @@ function TechnicianForm() {
 
     // Prepare the data to be sent to the server
     const data = {
-      first_name: firstName,
-      last_name: lastName,
-      employee_id: employeeId
-    };
-
-    // Define the URL for creating a new technician
+    first_name: firstName,
+    last_name: lastName,
+    employee_id: employeeId
+ }
+ 
     const techUrl = `http://localhost:8080/api/technicians/`;
 
     // Configuration for the HTTP request
@@ -61,7 +59,7 @@ function TechnicianForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1 className="">Create a Technician</h1>
+          <h1 className="text-light px-2 bg-dark">Create a Technician</h1>
           <form onSubmit={handleSubmit} id="create-location-form">
             <div className="form-floating mb-3">
               <input
