@@ -22,6 +22,7 @@ code {
   background-size: cover;
   background-position: center;
   height: 87vh;
+  overflow: auto;
 }
 
 .mainPage{
