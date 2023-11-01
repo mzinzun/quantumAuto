@@ -27,7 +27,7 @@ After cloning the repo run the following commands:
 - Endpoints:
 
     + Manufactures - : the company that manufactures the automobile
-        - List manufacturers : "GET"  manufacturers/
+        - List manufacturers : "GET"    http://localhost:8080/api/technicians/
         - Create a manufacturer : "POST"  manufacturers/
         - Get a specific manufacturer : "GET"  manufacturers/:id/
         - Update a specific manufacturer : "PUT"  manufacturers/:id/
