@@ -14,7 +14,7 @@ function SalesPeople(props) {
     function deletePerson(e) {
         const sp_id = e.target.id;
         const delURL = `http://localhost:8090/api/salespeople/${sp_id}/`
-        const response = fetch(delURL);
+        const response = fetch(delURL, { method: "delete" });
         let set = !update;
         setUpdate(set);
     }
