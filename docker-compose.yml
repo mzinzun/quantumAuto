@@ -3,7 +3,7 @@ volumes:
     external: true
 services:
   react:
-    image: node:lts-bullseye
+    image: node:20-bullseye
     command: /bin/bash run.sh
     working_dir: /app
     volumes:
